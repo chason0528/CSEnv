@@ -1,7 +1,7 @@
 # CSEnv
 Environment Files on Ubuntu
 
-## Switch JDK Environment
+## 1. Switch JDK Environment <change_jdk>
 
 ### Set up
 First add the following shell script to the path environment file such as ~/bash.rc.

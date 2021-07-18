@@ -1,0 +1,51 @@
+
+ 
+OLD_IFS="$IFS"
+IFS=":"
+paths=($PATH)
+IFS="$OLD_IFS"
+ 
+
+flag=1
+jdk6="/home/cxxsheng/jdk1.6.0_45"
+jdk7="/home/cxxsheng/jdk1.7.0_80"
+jdk8="/home/cxxsheng/java-se-8u41-ri"
+
+if [[ $1 == "jdk6" ]];
+then
+    jdk_path=$jdk6
+
+elif [[ $1 == "jdk7" ]];
+then
+    jdk_path=$jdk7
+
+elif [[ $1 == "jdk8" ]];
+then 
+    jdk_path=$jdk8
+else
+    echo "unkonwn option"
+    exit 1 
+fi        
+
+result=$jdk_path/bin
+
+for path in ${paths[@]}
+do
+
+
+if [ $path == *$jdk6* ] || [ $path == *$jdk7* ] || [ $path == *$jdk8* ];
+then
+    continue
+fi
+
+result=$result:$path
+done
+
+export JAVA_HOME=$jdk_path
+export PATH=$result
+
+
+if [[ $2 != "s" ]];
+then
+    echo $1" is set sucessfully!"
+fi
